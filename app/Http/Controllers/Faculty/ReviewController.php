@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Faculty;
 
 use App\Http\Controllers\Controller;
 use App\Models\Achievement;
+use App\Notifications\StudentActivityNotification;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -44,6 +45,33 @@ class ReviewController extends Controller
         ]);
 
         $achievement->update($validated);
+
+        $status = $validated['status'];
+        $title = 'Achievement Under Review';
+        $message = "Your achievement '{$achievement->title}' is currently under review.";
+        $notificationStatus = 'pending';
+
+        if ($status === 'approved') {
+            $title = 'Achievement Approved';
+            $message = "Your achievement '{$achievement->title}' has been approved by the Faculty.";
+            $notificationStatus = 'approved';
+        } elseif ($status === 'rejected') {
+            $title = 'Achievement Rejected';
+            $message = "Your achievement '{$achievement->title}' has been rejected.";
+            $notificationStatus = 'rejected';
+        }
+
+        if (!empty($validated['faculty_remarks'])) {
+            $message .= ' Faculty remarks: ' . $validated['faculty_remarks'];
+        }
+
+        $achievement->user->notify(new StudentActivityNotification(
+            title: $title,
+            message: $message,
+            status: $notificationStatus,
+            achievementTitle: $achievement->title,
+            remarks: $validated['faculty_remarks'] ?? null,
+        ));
 
         return back()->with('success', 'Achievement status updated successfully.');
     }

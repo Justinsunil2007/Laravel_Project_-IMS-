@@ -4,8 +4,8 @@
 @section('meta_description', 'Sign in to your student account.')
 
 @section('header_link')
-    <a href="{{ route('faculty.login') }}" style="color:var(--text-secondary); text-decoration:none; font-weight:500; font-size:0.8rem;">
-        Faculty Login <i class="bi bi-arrow-right ms-1"></i>
+    <a href="{{ route('home') }}" style="color:var(--text-secondary); text-decoration:none; font-weight:500; font-size:0.8rem;">
+        <i class="bi bi-arrow-left me-1"></i>Back to Portal Selection
     </a>
 @endsection
 

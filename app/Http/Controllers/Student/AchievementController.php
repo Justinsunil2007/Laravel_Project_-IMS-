@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Achievement;
+use App\Notifications\StudentActivityNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +50,14 @@ class AchievementController extends Controller
         }
 
         $validated['status'] = 'pending';
-        auth()->user()->achievements()->create($validated);
+        $achievement = auth()->user()->achievements()->create($validated);
+
+        auth()->user()->notify(new StudentActivityNotification(
+            title: 'Achievement Submitted',
+            message: "You successfully submitted '{$achievement->title}' for review.",
+            status: 'submitted',
+            achievementTitle: $achievement->title,
+        ));
 
         return redirect()->route('student.achievements.index')->with('success', 'Achievement submitted successfully!');
     }
@@ -88,6 +96,13 @@ class AchievementController extends Controller
 
         $achievement->update($validated);
 
+        auth()->user()->notify(new StudentActivityNotification(
+            title: 'Achievement Updated',
+            message: "You updated '{$achievement->title}' information.",
+            status: 'updated',
+            achievementTitle: $achievement->title,
+        ));
+
         return redirect()->route('student.achievements.index')->with('success', 'Achievement updated successfully!');
     }
 
@@ -100,7 +115,16 @@ class AchievementController extends Controller
         if ($achievement->certificate_file) {
             Storage::disk('public')->delete($achievement->certificate_file);
         }
+
+        $achievementTitle = $achievement->title;
         $achievement->delete();
+
+        auth()->user()->notify(new StudentActivityNotification(
+            title: 'Achievement Deleted',
+            message: "Your achievement '{$achievementTitle}' was deleted.",
+            status: 'deleted',
+            achievementTitle: $achievementTitle,
+        ));
 
         return redirect()->route('student.achievements.index')->with('success', 'Achievement deleted successfully!');
     }

@@ -26,6 +26,9 @@ class DashboardController extends Controller
             'rejected' => Achievement::where('user_id', $user->id)->where('status', 'rejected')->count(),
         ];
 
-        return view('student.dashboard', compact('user', 'achievements', 'stats'));
+        $notifications = $user->notifications()->latest()->take(4)->get();
+        $activities = $user->notifications()->latest()->take(5)->get();
+
+        return view('student.dashboard', compact('user', 'achievements', 'stats', 'notifications', 'activities'));
     }
 }

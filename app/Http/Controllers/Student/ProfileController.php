@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\StudentActivityNotification;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,6 +28,12 @@ class ProfileController extends Controller
         ]);
 
         $user->update($validated);
+
+        $user->notify(new StudentActivityNotification(
+            title: 'Profile Updated',
+            message: 'Your profile was updated successfully.',
+            status: 'profile',
+        ));
 
         return redirect()->route('student.profile.edit')->with('success', 'Profile updated successfully.');
     }
