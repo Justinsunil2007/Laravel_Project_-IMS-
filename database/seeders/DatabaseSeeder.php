@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => \Illuminate\Support\Facades\Hash::make('Password123'),
             'role' => 'faculty',
             'faculty_id' => 'FAC-2026-001',
+            'mobile_number' => '9876543210',
         ]);
 
         // 2. Create Student User
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             'student_id' => 'STU-2026-001',
             'department' => 'Computer Science',
             'year_level' => '3rd Year',
+            'mobile_number' => '1234567890',
         ]);
 
         // 3. Create Sample Achievements for the Student

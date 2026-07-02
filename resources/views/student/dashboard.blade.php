@@ -60,13 +60,13 @@
 <div class="row g-3">
     {{-- Recent Achievements --}}
     <div class="col-lg-8">
-        <div class="card-dark">
+        <div class="card-custom">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
                 <div>
                     <h2 style="font-size:1rem; font-weight:700; margin:0; letter-spacing:-0.02em;">Recent Achievements</h2>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Your latest submitted achievements</p>
                 </div>
-                <a href="#" style="font-size:0.8rem; color:var(--text-secondary); text-decoration:none; font-weight:500;"
+                <a href="{{ route('student.achievements.index') }}" style="font-size:0.8rem; color:var(--text-secondary); text-decoration:none; font-weight:500;"
                     onmouseover="this.style.color='var(--text-primary)';"
                     onmouseout="this.style.color='var(--text-secondary)';">
                     View All <i class="bi bi-arrow-right ms-1"></i>
@@ -77,13 +77,13 @@
                 <div style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
                     <i class="bi bi-trophy" style="font-size:2.5rem; display:block; margin-bottom:0.75rem; opacity:0.3;"></i>
                     <p style="margin:0; font-size:0.875rem;">No achievements yet.</p>
-                    <a href="#" style="color:var(--text-secondary); text-decoration:none; font-size:0.8rem; font-weight:500;">
+                    <a href="{{ route('student.achievements.create') }}" style="color:var(--text-secondary); text-decoration:none; font-size:0.8rem; font-weight:500;">
                         Submit your first achievement →
                     </a>
                 </div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-dark-custom mb-0">
+                    <table class="table table-custom mb-0">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -114,7 +114,7 @@
 
     {{-- Profile Info --}}
     <div class="col-lg-4">
-        <div class="card-dark" style="margin-bottom:1rem;">
+        <div class="card-custom" style="margin-bottom:1rem;">
             <h2 style="font-size:1rem; font-weight:700; margin:0 0 1rem; letter-spacing:-0.02em;">Student Profile</h2>
 
             <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border);">
@@ -149,16 +149,16 @@
         </div>
 
         {{-- Quick Actions --}}
-        <div class="card-dark">
+        <div class="card-custom">
             <h2 style="font-size:1rem; font-weight:700; margin:0 0 1rem; letter-spacing:-0.02em;">Quick Actions</h2>
             <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                <a href="#" style="display:flex; align-items:center; gap:0.75rem; padding:0.7rem 0.9rem; background:var(--accent-dim); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text-primary); font-size:0.85rem; font-weight:500; transition:var(--transition);"
+                <a href="{{ route('student.achievements.create') }}" style="display:flex; align-items:center; gap:0.75rem; padding:0.7rem 0.9rem; background:var(--accent-dim); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text-primary); font-size:0.85rem; font-weight:500; transition:var(--transition);"
                     onmouseover="this.style.background='var(--accent-hover)';"
                     onmouseout="this.style.background='var(--accent-dim)';">
                     <i class="bi bi-plus-circle-fill" style="color:#22c55e;"></i>
                     Submit New Achievement
                 </a>
-                <a href="#" style="display:flex; align-items:center; gap:0.75rem; padding:0.7rem 0.9rem; background:var(--accent-dim); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text-primary); font-size:0.85rem; font-weight:500; transition:var(--transition);"
+                <a href="{{ route('student.profile.edit') }}" style="display:flex; align-items:center; gap:0.75rem; padding:0.7rem 0.9rem; background:var(--accent-dim); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text-primary); font-size:0.85rem; font-weight:500; transition:var(--transition);"
                     onmouseover="this.style.background='var(--accent-hover)';"
                     onmouseout="this.style.background='var(--accent-dim)';">
                     <i class="bi bi-person-fill" style="color:#3b82f6;"></i>

@@ -17,27 +17,27 @@
     <style>
         /* ── CSS Variables ─────────────────────────────────── */
         :root {
-            --bg-primary:    #0a0a0a;
-            --bg-secondary:  #111111;
-            --bg-card:       #161616;
-            --bg-hover:      #1e1e1e;
-            --border:        #2a2a2a;
-            --border-light:  #333333;
-            --text-primary:  #f5f5f5;
-            --text-secondary:#a0a0a0;
-            --text-muted:    #666666;
-            --accent:        #ffffff;
-            --accent-dim:    rgba(255,255,255,0.08);
-            --accent-hover:  rgba(255,255,255,0.12);
-            --success:       #22c55e;
+            --bg-primary:    #ffffff;
+            --bg-secondary:  #fafafa;
+            --bg-card:       #ffffff;
+            --bg-hover:      #f4f4f5;
+            --border:        #e4e4e7;
+            --border-light:  #f4f4f5;
+            --text-primary:  #18181b;
+            --text-secondary:#3f3f46;
+            --text-muted:    #71717a;
+            --accent:        #4F46E5;
+            --accent-dim:    rgba(79, 70, 229, 0.08);
+            --accent-hover:  rgba(79, 70, 229, 0.15);
+            --success:       #16a34a;
             --warning:       #f59e0b;
             --danger:        #ef4444;
             --info:          #3b82f6;
             --sidebar-width: 260px;
             --navbar-height: 64px;
-            --radius:        10px;
+            --radius:        12px;
             --radius-lg:     16px;
-            --shadow:        0 4px 24px rgba(0,0,0,0.4);
+            --shadow:        0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
             --transition:    all 0.2s ease;
         }
 
@@ -58,7 +58,7 @@
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
         ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 
         /* ── Navbar ─────────────────────────────────────────── */
         .app-navbar {
@@ -67,7 +67,7 @@
             left: 0;
             right: 0;
             height: var(--navbar-height);
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -151,15 +151,15 @@
         }
 
         .role-badge.student {
-            background: rgba(59,130,246,0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59,130,246,0.25);
+            background: rgba(37,99,235,0.1);
+            color: #2563eb;
+            border: 1px solid rgba(37,99,235,0.2);
         }
 
         .role-badge.faculty {
-            background: rgba(168,85,247,0.15);
-            color: #c084fc;
-            border: 1px solid rgba(168,85,247,0.25);
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid var(--accent-hover);
         }
 
         /* ── Sidebar ─────────────────────────────────────────── */
@@ -211,6 +211,7 @@
         .sidebar-nav-item.active {
             background: var(--accent-dim);
             color: var(--text-primary);
+            font-weight: 600;
         }
 
         .sidebar-nav-item.active::before {
@@ -255,7 +256,7 @@
         .btn-logout:hover {
             border-color: var(--danger);
             color: var(--danger);
-            background: rgba(239,68,68,0.05);
+            background: rgba(220,38,38,0.05);
         }
 
         /* ── Main Content ────────────────────────────────────── */
@@ -292,15 +293,16 @@
         }
 
         /* ── Cards ───────────────────────────────────────────── */
-        .card-dark {
+        .card-custom {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
             transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
-        .card-dark:hover {
+        .card-custom:hover {
             border-color: var(--border-light);
             box-shadow: var(--shadow);
         }
@@ -314,6 +316,7 @@
             align-items: center;
             gap: 1rem;
             transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .stat-card:hover {
@@ -333,17 +336,17 @@
             flex-shrink: 0;
         }
 
-        .stat-icon.white   { background: rgba(255,255,255,0.08); color: #fff; }
-        .stat-icon.green   { background: rgba(34,197,94,0.12);   color: #22c55e; }
-        .stat-icon.yellow  { background: rgba(245,158,11,0.12);  color: #f59e0b; }
-        .stat-icon.red     { background: rgba(239,68,68,0.12);   color: #ef4444; }
-        .stat-icon.blue    { background: rgba(59,130,246,0.12);  color: #3b82f6; }
-        .stat-icon.purple  { background: rgba(168,85,247,0.12);  color: #a855f7; }
+        .stat-icon.white   { background: rgba(0,0,0,0.05); color: #000; border: 1px solid rgba(0,0,0,0.1); }
+        .stat-icon.green   { background: rgba(22,163,74,0.1);   color: #16a34a; }
+        .stat-icon.yellow  { background: rgba(217,119,6,0.1);  color: #d97706; }
+        .stat-icon.red     { background: rgba(220,38,38,0.1);   color: #dc2626; }
+        .stat-icon.blue    { background: rgba(37,99,235,0.1);  color: #2563eb; }
+        .stat-icon.purple  { background: rgba(147,51,234,0.1);  color: #9333ea; }
 
         .stat-label {
             font-size: 0.75rem;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -357,35 +360,40 @@
         }
 
         /* ── Table ───────────────────────────────────────────── */
-        .table-dark-custom {
+        .table-custom {
             color: var(--text-primary);
             border-color: var(--border);
+            background: #ffffff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .table-dark-custom thead th {
+        .table-custom thead th {
             background: var(--bg-secondary);
-            color: var(--text-muted);
-            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             border-color: var(--border);
             padding: 0.9rem 1rem;
         }
 
-        .table-dark-custom tbody td {
+        .table-custom tbody td {
             border-color: var(--border);
             padding: 0.85rem 1rem;
             vertical-align: middle;
             font-size: 0.875rem;
+            background: #ffffff;
         }
 
-        .table-dark-custom tbody tr {
+        .table-custom tbody tr {
             transition: var(--transition);
         }
 
-        .table-dark-custom tbody tr:hover {
-            background: var(--bg-hover) !important;
+        .table-custom tbody tr:hover td {
+            background: var(--bg-hover);
         }
 
         /* ── Status Badges ───────────────────────────────────── */
@@ -398,9 +406,9 @@
             text-transform: uppercase;
         }
 
-        .status-badge.pending  { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
-        .status-badge.approved { background: rgba(34,197,94,0.15);  color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
-        .status-badge.rejected { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+        .status-badge.pending  { background: rgba(217,119,6,0.1); color: #d97706; border: 1px solid rgba(217,119,6,0.2); }
+        .status-badge.approved { background: rgba(22,163,74,0.1);  color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+        .status-badge.rejected { background: rgba(220,38,38,0.1);  color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
 
         /* ── Footer ──────────────────────────────────────────── */
         .app-footer {
@@ -417,18 +425,149 @@
         }
 
         /* ── Alerts ──────────────────────────────────────────── */
-        .alert-dark-success {
-            background: rgba(34,197,94,0.1);
-            border: 1px solid rgba(34,197,94,0.25);
-            color: #22c55e;
+        .alert-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.9rem 1rem;
             border-radius: var(--radius);
+            border: 1px solid;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .alert-banner-success { background: rgba(22,163,74,0.08); border-color: rgba(22,163,74,0.25); color: #14532d; }
+        .alert-banner-danger  { background: rgba(220,38,38,0.08);  border-color: rgba(220,38,38,0.25);  color: #7f1d1d; }
+        .alert-banner-warning { background: rgba(217,119,6,0.08);  border-color: rgba(217,119,6,0.25);  color: #78350f; }
+        .alert-banner-info    { background: rgba(37,99,235,0.08);  border-color: rgba(37,99,235,0.25);  color: #1e3a8a; }
+
+        .alert-banner-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .alert-banner-success .alert-banner-icon { color: #16a34a; }
+        .alert-banner-danger  .alert-banner-icon { color: #dc2626; }
+        .alert-banner-warning .alert-banner-icon { color: #d97706; }
+        .alert-banner-info    .alert-banner-icon { color: #3b82f6; }
+
+        .alert-banner-body {
+            flex: 1;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .alert-banner-close {
+            background: none;
+            border: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            opacity: 0.6;
+            padding: 0;
+            color: inherit;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .alert-banner-close:hover { opacity: 1; }
+
+        /* Form Controls for Light Theme */
+        .form-control, .form-select {
+            background-color: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            border-radius: var(--radius);
+            padding: 0.6rem 1rem;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #ffffff;
+            border-color: var(--accent);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+            outline: none;
+        }
+        
+        .form-control-custom {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            padding: 0.7rem 0.9rem;
+            font-size: 0.875rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        .form-control-custom.with-icon {
+            padding-left: 2.5rem;
+        }
+        .form-control-custom:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+        .form-control-custom::placeholder { color: var(--text-muted); }
+        .form-control-custom.is-invalid { border-color: var(--danger); }
+        
+        .input-wrapper { position: relative; }
+        .input-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        .input-wrapper select.form-control-custom {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
         }
 
-        .alert-dark-error {
-            background: rgba(239,68,68,0.1);
-            border: 1px solid rgba(239,68,68,0.25);
-            color: #ef4444;
+        .invalid-feedback-custom {
+            color: var(--danger);
+            font-size: 0.78rem;
+            margin-top: 0.3rem;
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Buttons for Light Theme */
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+            border: 1px solid var(--accent);
             border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.6rem 1.25rem;
+            transition: var(--transition);
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: #4338ca;
+            color: #ffffff;
+            border-color: #4338ca;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+            transform: translateY(-1px);
+        }
+        .btn-outline-primary {
+            background: #ffffff;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.6rem 1.25rem;
+            transition: var(--transition);
+        }
+        .btn-outline-primary:hover, .btn-outline-primary:focus {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* ── Responsive ──────────────────────────────────────── */
@@ -462,16 +601,38 @@
 
         {{-- Session Alerts --}}
         @if(session('success'))
-            <div class="alert alert-dark-success alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            <div class="alert-banner alert-banner-success alert-banner-dismissible mb-4" role="alert" id="alert-success">
+                <div class="alert-banner-icon"><i class="bi bi-check-circle-fill"></i></div>
+                <div class="alert-banner-body">
+                    <strong>Success!</strong> {{ session('success') }}
+                </div>
+                <button type="button" class="alert-banner-close" onclick="this.closest('.alert-banner').remove()" aria-label="Dismiss">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
         @endif
 
         @if(session('error'))
-            <div class="alert alert-dark-error alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-exclamation-triangle me-2"></i>{{ session('error') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            <div class="alert-banner alert-banner-danger alert-banner-dismissible mb-4" role="alert" id="alert-error">
+                <div class="alert-banner-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                <div class="alert-banner-body">
+                    <strong>Error!</strong> {{ session('error') }}
+                </div>
+                <button type="button" class="alert-banner-close" onclick="this.closest('.alert-banner').remove()" aria-label="Dismiss">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        @endif
+
+        @if(session('warning'))
+            <div class="alert-banner alert-banner-warning alert-banner-dismissible mb-4" role="alert" id="alert-warning">
+                <div class="alert-banner-icon"><i class="bi bi-exclamation-circle-fill"></i></div>
+                <div class="alert-banner-body">
+                    <strong>Warning!</strong> {{ session('warning') }}
+                </div>
+                <button type="button" class="alert-banner-close" onclick="this.closest('.alert-banner').remove()" aria-label="Dismiss">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
         @endif
 

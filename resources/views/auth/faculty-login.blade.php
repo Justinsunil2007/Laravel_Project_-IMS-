@@ -12,8 +12,8 @@
 @section('auth_content')
     {{-- Logo & Title --}}
     <div class="auth-logo">
-        <div class="auth-logo-icon" style="background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.25);">
-            <i class="bi bi-briefcase-fill" style="color:#c084fc;"></i>
+        <div class="auth-logo-icon" style="background: var(--accent-dim); border-color: var(--accent-hover);">
+            <i class="bi bi-briefcase-fill" style="color:var(--accent);"></i>
         </div>
         <h1 class="auth-title">Faculty Login</h1>
         <p class="auth-subtitle">Sign in to manage student achievements</p>
@@ -35,8 +35,8 @@
         @endif
 
         {{-- Faculty Info Box --}}
-        <div style="background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.2); border-radius:var(--radius); padding:0.85rem 1rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.65rem;">
-            <i class="bi bi-info-circle-fill" style="color:#c084fc; flex-shrink:0;"></i>
+        <div style="background:var(--accent-dim); border:1px solid var(--accent-hover); border-radius:var(--radius); padding:0.85rem 1rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.65rem;">
+            <i class="bi bi-info-circle-fill" style="color:var(--accent); flex-shrink:0;"></i>
             <span style="font-size:0.8rem; color:var(--text-secondary);">
                 This portal is restricted to authorized faculty members only.
             </span>
@@ -55,7 +55,7 @@
                         id="faculty_email"
                         name="email"
                         value="{{ old('email') }}"
-                        class="form-control-dark {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                        class="form-control-custom {{ $errors->has('email') ? 'is-invalid' : '' }}"
                         placeholder="faculty@school.edu"
                         required
                         autocomplete="email"
@@ -73,7 +73,7 @@
                         type="password"
                         id="faculty_password"
                         name="password"
-                        class="form-control-dark {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                        class="form-control-custom {{ $errors->has('password') ? 'is-invalid' : '' }}"
                         placeholder="Enter your password"
                         required
                         autocomplete="current-password"
@@ -84,19 +84,29 @@
             {{-- Remember Me --}}
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem;">
                 <input type="checkbox" id="faculty_remember" name="remember"
-                    style="width:15px; height:15px; accent-color:#c084fc; cursor:pointer;">
+                    style="width:15px; height:15px; accent-color:var(--accent); cursor:pointer;">
                 <label for="faculty_remember" style="font-size:0.8rem; color:var(--text-secondary); cursor:pointer; margin:0;">
                     Remember me
                 </label>
             </div>
 
             {{-- Submit --}}
-            <button type="submit" class="btn-auth" id="faculty-login-btn"
-                style="background:#c084fc; color:#0a0a0a;">
+            <button type="submit" class="btn-auth" id="faculty-login-btn">
                 <i class="bi bi-box-arrow-in-right"></i>
                 Sign In as Faculty
             </button>
         </form>
+
+        <div class="auth-divider">
+            <span>Don't have an account?</span>
+        </div>
+
+        <a href="{{ route('faculty.register') }}" style="display:block; width:100%; background:transparent; border:1px solid var(--border); color:var(--text-secondary); border-radius:var(--radius); padding:0.7rem 1rem; font-size:0.875rem; font-weight:600; font-family:'Inter',sans-serif; text-decoration:none; text-align:center; transition:var(--transition);"
+            onmouseover="this.style.borderColor='var(--border-light)'; this.style.color='var(--text-primary)';"
+            onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-secondary)';">
+            <i class="bi bi-person-plus me-1"></i>
+            Create Faculty Account
+        </a>
     </div>
 
     <div class="auth-links">

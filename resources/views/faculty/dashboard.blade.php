@@ -60,7 +60,7 @@
 <div class="row g-3">
     {{-- Recent Achievements --}}
     <div class="col-lg-8">
-        <div class="card-dark">
+        <div class="card-custom">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
                 <div>
                     <h2 style="font-size:1rem; font-weight:700; margin:0; letter-spacing:-0.02em;">Recent Submissions</h2>
@@ -80,7 +80,7 @@
                 </div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-dark-custom mb-0">
+                    <table class="table table-custom mb-0">
                         <thead>
                             <tr>
                                 <th>Student</th>
@@ -107,7 +107,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="#" style="font-size:0.78rem; color:var(--text-secondary); text-decoration:none; font-weight:500;"
+                                    <a href="{{ route('faculty.achievements.index') }}" style="font-size:0.78rem; color:var(--text-secondary); text-decoration:none; font-weight:500;"
                                         onmouseover="this.style.color='var(--text-primary)';"
                                         onmouseout="this.style.color='var(--text-secondary)';">
                                         Review
@@ -125,10 +125,10 @@
     {{-- Right Column --}}
     <div class="col-lg-4">
         {{-- Faculty Info --}}
-        <div class="card-dark" style="margin-bottom:1rem;">
+        <div class="card-custom" style="margin-bottom:1rem;">
             <h2 style="font-size:1rem; font-weight:700; margin:0 0 1rem; letter-spacing:-0.02em;">My Profile</h2>
             <div style="display:flex; align-items:center; gap:0.75rem; padding-bottom:1rem; border-bottom:1px solid var(--border); margin-bottom:1rem;">
-                <div style="width:52px; height:52px; border-radius:50%; background:rgba(168,85,247,0.12); border:1px solid rgba(168,85,247,0.25); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; color:#c084fc; flex-shrink:0;">
+                <div style="width:52px; height:52px; border-radius:50%; background:var(--accent-dim); border:1px solid var(--accent-hover); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; color:var(--accent); flex-shrink:0;">
                     {{ strtoupper(substr($user->name, 0, 2)) }}
                 </div>
                 <div>
@@ -140,7 +140,7 @@
         </div>
 
         {{-- Recent Students --}}
-        <div class="card-dark">
+        <div class="card-custom">
             <h2 style="font-size:1rem; font-weight:700; margin:0 0 1rem; letter-spacing:-0.02em;">Recent Students</h2>
             @if($students->isEmpty())
                 <p style="color:var(--text-muted); font-size:0.85rem; text-align:center; padding:1rem 0;">No students registered yet.</p>

@@ -1,20 +1,20 @@
 @extends('layouts.auth')
 
-@section('title', 'Student Registration')
-@section('meta_description', 'Create a new student account.')
+@section('title', 'Faculty Registration')
+@section('meta_description', 'Create a new faculty account.')
 
 @section('header_link')
-    Already have an account? <a href="{{ route('student.login') }}" style="color:var(--text-secondary); text-decoration:none; font-weight:600;">Sign In</a>
+    Already have an account? <a href="{{ route('faculty.login') }}" style="color:var(--text-secondary); text-decoration:none; font-weight:600;">Sign In</a>
 @endsection
 
 @section('auth_content')
     {{-- Logo & Title --}}
     <div class="auth-logo">
         <div class="auth-logo-icon">
-            <i class="bi bi-person-plus-fill" style="color:var(--text-secondary);"></i>
+            <i class="bi bi-person-badge-fill" style="color:var(--text-secondary);"></i>
         </div>
-        <h1 class="auth-title">Create Account</h1>
-        <p class="auth-subtitle">Register as a student to get started</p>
+        <h1 class="auth-title">Faculty Registration</h1>
+        <p class="auth-subtitle">Create your faculty account</p>
     </div>
 
     {{-- Card --}}
@@ -32,7 +32,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('student.register.post') }}" novalidate>
+        <form method="POST" action="{{ route('faculty.register.post') }}" novalidate>
             @csrf
 
             {{-- Full Name --}}
@@ -46,7 +46,7 @@
                         name="name"
                         value="{{ old('name') }}"
                         class="form-control-custom {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                        placeholder="Juan dela Cruz"
+                        placeholder="Dr. Juan dela Cruz"
                         required
                         autocomplete="name"
                         autofocus
@@ -57,22 +57,22 @@
                 @enderror
             </div>
 
-            {{-- Student ID --}}
+            {{-- Faculty ID --}}
             <div class="form-group">
-                <label class="form-label" for="reg_student_id">Student ID</label>
+                <label class="form-label" for="reg_faculty_id">Employee / Faculty ID</label>
                 <div class="input-wrapper">
-                    <i class="bi bi-card-text input-icon"></i>
+                    <i class="bi bi-card-heading input-icon"></i>
                     <input
                         type="text"
-                        id="reg_student_id"
-                        name="student_id"
-                        value="{{ old('student_id') }}"
-                        class="form-control-custom {{ $errors->has('student_id') ? 'is-invalid' : '' }}"
-                        placeholder="e.g. 2024-00001"
+                        id="reg_faculty_id"
+                        name="faculty_id"
+                        value="{{ old('faculty_id') }}"
+                        class="form-control-custom {{ $errors->has('faculty_id') ? 'is-invalid' : '' }}"
+                        placeholder="e.g. EMP-2024-001"
                         required
                     >
                 </div>
-                @error('student_id')
+                @error('faculty_id')
                     <div class="invalid-feedback-custom">{{ $message }}</div>
                 @enderror
             </div>
@@ -88,7 +88,7 @@
                         name="email"
                         value="{{ old('email') }}"
                         class="form-control-custom {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                        placeholder="yourname@school.edu"
+                        placeholder="faculty@school.edu"
                         required
                         autocomplete="email"
                     >
@@ -98,49 +98,24 @@
                 @enderror
             </div>
 
-            {{-- Department & Year Level (2 cols) --}}
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
-                <div class="form-group">
-                    <label class="form-label" for="reg_department">Department</label>
-                    <div class="input-wrapper">
-                        <i class="bi bi-building input-icon"></i>
-                        <input
-                            type="text"
-                            id="reg_department"
-                            name="department"
-                            value="{{ old('department') }}"
-                            class="form-control-custom {{ $errors->has('department') ? 'is-invalid' : '' }}"
-                            placeholder="e.g. BSIT"
-                            required
-                        >
-                    </div>
-                    @error('department')
-                        <div class="invalid-feedback-custom">{{ $message }}</div>
-                    @enderror
+            {{-- Department --}}
+            <div class="form-group">
+                <label class="form-label" for="reg_department">Department</label>
+                <div class="input-wrapper">
+                    <i class="bi bi-building input-icon"></i>
+                    <input
+                        type="text"
+                        id="reg_department"
+                        name="department"
+                        value="{{ old('department') }}"
+                        class="form-control-custom {{ $errors->has('department') ? 'is-invalid' : '' }}"
+                        placeholder="e.g. Computer Science"
+                        required
+                    >
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="reg_year_level">Year Level</label>
-                    <div class="input-wrapper">
-                        <i class="bi bi-layers input-icon"></i>
-                        <select
-                            id="reg_year_level"
-                            name="year_level"
-                            class="form-control-custom {{ $errors->has('year_level') ? 'is-invalid' : '' }}"
-                            style="cursor:pointer; padding-left:2.5rem;"
-                            required
-                        >
-                            <option value="" disabled {{ old('year_level') ? '' : 'selected' }}>Select</option>
-                            <option value="1st Year" {{ old('year_level') == '1st Year' ? 'selected' : '' }}>1st Year</option>
-                            <option value="2nd Year" {{ old('year_level') == '2nd Year' ? 'selected' : '' }}>2nd Year</option>
-                            <option value="3rd Year" {{ old('year_level') == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
-                            <option value="4th Year" {{ old('year_level') == '4th Year' ? 'selected' : '' }}>4th Year</option>
-                        </select>
-                    </div>
-                    @error('year_level')
-                        <div class="invalid-feedback-custom">{{ $message }}</div>
-                    @enderror
-                </div>
+                @error('department')
+                    <div class="invalid-feedback-custom">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Password --}}
@@ -181,14 +156,14 @@
             </div>
 
             {{-- Submit --}}
-            <button type="submit" class="btn-auth" id="register-submit-btn">
+            <button type="submit" class="btn-auth" id="faculty-register-submit-btn">
                 <i class="bi bi-person-check-fill"></i>
-                Create Student Account
+                Create Faculty Account
             </button>
         </form>
     </div>
 
     <div class="auth-links">
-        Already registered? <a href="{{ route('student.login') }}">Sign In →</a>
+        Are you a student? <a href="{{ route('student.register') }}">Student Registration →</a>
     </div>
 @endsection

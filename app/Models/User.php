@@ -25,6 +25,7 @@ class User extends Authenticatable
         'department',
         'year_level',
         'faculty_id',
+        'mobile_number',
     ];
 
     /**

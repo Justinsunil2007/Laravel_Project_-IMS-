@@ -33,27 +33,19 @@
             </a>
 
             <div class="sidebar-section-label">Achievements</div>
-            <a href="#" class="sidebar-nav-item">
+            <a href="{{ route('student.achievements.index') }}" class="sidebar-nav-item {{ request()->routeIs('student.achievements.index') ? 'active' : '' }}">
                 <i class="bi bi-trophy-fill"></i>
                 My Achievements
             </a>
-            <a href="#" class="sidebar-nav-item">
+            <a href="{{ route('student.achievements.create') }}" class="sidebar-nav-item {{ request()->routeIs('student.achievements.create') ? 'active' : '' }}">
                 <i class="bi bi-plus-circle-fill"></i>
                 Submit Achievement
             </a>
-            <a href="#" class="sidebar-nav-item">
-                <i class="bi bi-clock-history"></i>
-                Pending Review
-            </a>
 
             <div class="sidebar-section-label">Profile</div>
-            <a href="#" class="sidebar-nav-item">
+            <a href="{{ route('student.profile.edit') }}" class="sidebar-nav-item {{ request()->routeIs('student.profile.edit') ? 'active' : '' }}">
                 <i class="bi bi-person-fill"></i>
                 My Profile
-            </a>
-            <a href="#" class="sidebar-nav-item">
-                <i class="bi bi-shield-lock-fill"></i>
-                Change Password
             </a>
 
         @elseif(auth()->user()->isFaculty())
@@ -66,32 +58,19 @@
             </a>
 
             <div class="sidebar-section-label">Management</div>
-            <a href="#" class="sidebar-nav-item">
-                <i class="bi bi-people-fill"></i>
-                All Students
-            </a>
-            <a href="#" class="sidebar-nav-item">
+            <a href="{{ route('faculty.achievements.index') }}" class="sidebar-nav-item {{ request()->routeIs('faculty.achievements.index') ? 'active' : '' }}">
                 <i class="bi bi-trophy-fill"></i>
                 All Achievements
             </a>
-            <a href="#" class="sidebar-nav-item">
+            <a href="{{ route('faculty.achievements.index', ['status' => 'pending']) }}" class="sidebar-nav-item {{ request()->fullUrlIs('*status=pending*') ? 'active' : '' }}">
                 <i class="bi bi-hourglass-split"></i>
                 Pending Review
                 @php $pending = \App\Models\Achievement::where('status','pending')->count(); @endphp
                 @if($pending > 0)
-                    <span style="margin-left:auto; background:var(--warning); color:#000; font-size:0.65rem; font-weight:700; border-radius:20px; padding:1px 7px;">{{ $pending }}</span>
+                    <span style="margin-left:auto; background:var(--warning); color:#fff; font-size:0.65rem; font-weight:700; border-radius:20px; padding:1px 7px;">{{ $pending }}</span>
                 @endif
             </a>
-            <a href="#" class="sidebar-nav-item">
-                <i class="bi bi-bar-chart-fill"></i>
-                Reports
-            </a>
 
-            <div class="sidebar-section-label">Settings</div>
-            <a href="#" class="sidebar-nav-item">
-                <i class="bi bi-person-fill"></i>
-                My Profile
-            </a>
         @endif
 
         {{-- Logout at Bottom --}}

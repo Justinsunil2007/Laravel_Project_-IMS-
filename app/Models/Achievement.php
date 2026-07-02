@@ -18,6 +18,7 @@ class Achievement extends Model
         'date_achieved',
         'certificate_file',
         'status',
+        'faculty_remarks',
     ];
 
     protected function casts(): array

@@ -127,6 +127,47 @@ class AuthController extends Controller
     }
 
     // -------------------------------------------------------------------------
+    // REGISTRATION (Faculty)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Show the faculty registration form.
+     */
+    public function showFacultyRegister()
+    {
+        if (Auth::check()) {
+            return $this->redirectByRole(Auth::user());
+        }
+        return view('auth.faculty-register');
+    }
+
+    /**
+     * Handle a faculty registration request.
+     */
+    public function facultyRegister(Request $request)
+    {
+        $request->validate([
+            'name'        => ['required', 'string', 'max:255'],
+            'faculty_id'  => ['required', 'string', 'max:50', 'unique:users,faculty_id'],
+            'email'       => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'department'  => ['required', 'string', 'max:255'],
+            'password'    => ['required', 'confirmed', Password::min(8)],
+        ]);
+
+        User::create([
+            'name'       => $request->name,
+            'faculty_id' => $request->faculty_id,
+            'email'      => $request->email,
+            'department' => $request->department,
+            'role'       => 'faculty',
+            'password'   => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('faculty.login')
+            ->with('success', 'Registration successful! Please log in.');
+    }
+
+    // -------------------------------------------------------------------------
     // LOGOUT
     // -------------------------------------------------------------------------
 

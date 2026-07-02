@@ -47,7 +47,7 @@
                         id="student_email"
                         name="email"
                         value="{{ old('email') }}"
-                        class="form-control-dark {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                        class="form-control-custom {{ $errors->has('email') ? 'is-invalid' : '' }}"
                         placeholder="yourname@school.edu"
                         required
                         autocomplete="email"
@@ -65,7 +65,7 @@
                         type="password"
                         id="student_password"
                         name="password"
-                        class="form-control-dark {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                        class="form-control-custom {{ $errors->has('password') ? 'is-invalid' : '' }}"
                         placeholder="Enter your password"
                         required
                         autocomplete="current-password"
