@@ -8,10 +8,10 @@ use App\Http\Controllers\Student\ProfileController;
 use App\Http\Controllers\Student\AchievementController;
 use App\Http\Controllers\Faculty\ReviewController;
 // ─────────────────────────────────────────────────────────────────────────────
-// HOME — Redirect to student login by default
+// HOME — Landing page for the portal
 // ─────────────────────────────────────────────────────────────────────────────
 Route::get('/', function () {
-    return redirect()->route('student.login');
+    return view('welcome');
 })->name('home');
 
 // ─────────────────────────────────────────────────────────────────────────────

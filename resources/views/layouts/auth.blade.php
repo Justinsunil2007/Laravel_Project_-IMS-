@@ -12,14 +12,14 @@
 
     <style>
         :root {
-            --bg-primary:   #fafafa;
-            --bg-secondary: #ffffff;
+            --bg-primary:   #ffffff;
+            --bg-secondary: #f5f5f5;
             --bg-card:      #ffffff;
             --border:       #e4e4e7;
             --border-light: #f4f4f5;
-            --text-primary: #18181b;
-            --text-secondary:#3f3f46;
-            --text-muted:   #71717a;
+            --text-primary: #111827;
+            --text-secondary:#374151;
+            --text-muted:   #6b7280;
             --accent:       #4F46E5;
             --accent-dim:   rgba(79, 70, 229, 0.08);
             --accent-hover: rgba(79, 70, 229, 0.15);
@@ -33,7 +33,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8ff 100%);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
@@ -135,6 +135,23 @@
             padding: 2rem;
             margin-top: 1.5rem;
             box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 575.98px) {
+            .auth-header {
+                padding: 1rem 1.25rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .auth-main {
+                padding: 1.25rem 1rem 2rem;
+            }
+
+            .auth-card {
+                padding: 1.25rem;
+            }
         }
 
         /* Form Controls */
