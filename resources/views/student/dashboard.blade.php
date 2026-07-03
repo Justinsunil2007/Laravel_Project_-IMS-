@@ -129,94 +129,86 @@
             @endif
         </div>
     </div>
-
-    {{-- Profile Info --}}
+                        
+    {{-- Right Column: Recent Updates --}}
     <div class="col-lg-4">
-        <div class="card-custom" style="margin-bottom:1rem;">
-            <h2 style="font-size:1rem; font-weight:700; margin:0 0 1rem; letter-spacing:-0.02em;">Student Profile</h2>
-
-            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border);">
-                <div style="width:52px; height:52px; border-radius:50%; background:var(--accent-dim); border:1px solid var(--border-light); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex-shrink:0;">
-                    {{ strtoupper(substr($user->name, 0, 2)) }}
-                </div>
-                <div>
-                    <div style="font-weight:600; font-size:0.9rem;">{{ $user->name }}</div>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">{{ $user->email }}</div>
-                </div>
-            </div>
-
-            @php
-                $profileItems = [
-                    ['icon' => 'bi-card-text', 'label' => 'Student ID',   'value' => $user->student_id ?? 'Not set'],
-                    ['icon' => 'bi-building',  'label' => 'Department',   'value' => $user->department ?? 'Not set'],
-                    ['icon' => 'bi-layers',    'label' => 'Year Level',   'value' => $user->year_level ?? 'Not set'],
-                ];
-            @endphp
-
-            @foreach($profileItems as $item)
-                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
-                    <div style="width:32px; height:32px; border-radius:8px; background:var(--accent-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                        <i class="bi {{ $item['icon'] }}" style="font-size:0.85rem; color:var(--text-secondary);"></i>
-                    </div>
-                    <div>
-                        <div style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.04em;">{{ $item['label'] }}</div>
-                        <div style="font-size:0.875rem; font-weight:500; color:var(--text-primary);">{{ $item['value'] }}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        {{-- Notifications & Recent Activity --}}
         <div class="card-custom">
             @php
                 $statusMap = [
-                    'approved' => ['label' => 'Approved', 'color' => '#16a34a', 'bg' => 'rgba(22,163,74,0.12)', 'icon' => 'check-circle-fill'],
-                    'pending'  => ['label' => 'Under Review', 'color' => '#d97706', 'bg' => 'rgba(217,119,6,0.12)', 'icon' => 'hourglass-split'],
-                    'rejected' => ['label' => 'Rejected', 'color' => '#dc2626', 'bg' => 'rgba(220,38,38,0.12)', 'icon' => 'x-circle-fill'],
-                    'submitted'=> ['label' => 'Submitted', 'color' => '#2563eb', 'bg' => 'rgba(37,99,235,0.12)', 'icon' => 'arrow-up-circle-fill'],
-                    'updated'  => ['label' => 'Updated', 'color' => '#7c3aed', 'bg' => 'rgba(124,58,237,0.12)', 'icon' => 'pencil-square'],
-                    'profile'  => ['label' => 'Profile', 'color' => '#8b5cf6', 'bg' => 'rgba(139,92,246,0.12)', 'icon' => 'person-fill'],
-                    'deleted'  => ['label' => 'Deleted', 'color' => '#ef4444', 'bg' => 'rgba(239,68,68,0.12)', 'icon' => 'trash-fill'],
+                    'approved'  => ['label' => 'Approved',    'color' => '#16a34a', 'bg' => 'rgba(22,163,74,0.12)',    'icon' => 'check-circle-fill'],
+                    'pending'   => ['label' => 'Under Review', 'color' => '#d97706', 'bg' => 'rgba(217,119,6,0.12)',   'icon' => 'hourglass-split'],
+                    'rejected'  => ['label' => 'Rejected',    'color' => '#dc2626', 'bg' => 'rgba(220,38,38,0.12)',    'icon' => 'x-circle-fill'],
+                    'submitted' => ['label' => 'Submitted',   'color' => '#2563eb', 'bg' => 'rgba(37,99,235,0.12)',    'icon' => 'arrow-up-circle-fill'],
+                    'updated'   => ['label' => 'Updated',     'color' => '#7c3aed', 'bg' => 'rgba(124,58,237,0.12)',   'icon' => 'pencil-square'],
+                    'profile'   => ['label' => 'Profile',     'color' => '#8b5cf6', 'bg' => 'rgba(139,92,246,0.12)',   'icon' => 'person-fill'],
+                    'deleted'   => ['label' => 'Deleted',     'color' => '#ef4444', 'bg' => 'rgba(239,68,68,0.12)',    'icon' => 'trash-fill'],
                 ];
             @endphp
 
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; gap:0.75rem;">
+            {{-- Card Header --}}
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; gap:0.75rem;">
                 <div>
-                    <h2 style="font-size:1rem; font-weight:700; margin:0; letter-spacing:-0.02em;">🔔 Notifications & Recent Activity</h2>
-                    <p style="margin:0.45rem 0 0; color:var(--text-secondary); font-size:0.85rem; max-width:320px; line-height:1.5;">See achievement updates and profile activity in one place so you can act quickly.</p>
+                    <h2 style="font-size:1rem; font-weight:700; margin:0; letter-spacing:-0.02em;">🔔 Recent Updates</h2>
+                    <p style="margin:0.35rem 0 0; color:var(--text-muted); font-size:0.8rem; line-height:1.5;">
+                        Your latest achievement and profile activity.
+                    </p>
                 </div>
             </div>
 
-            @if($notifications->isEmpty())
-                <div style="text-align:center; padding:2rem 1rem; color:var(--text-secondary);">
-                    <div style="font-size:2rem; margin-bottom:1rem; color:#8b5cf6;">🔔</div>
-                    <p style="margin:0; font-size:1rem; font-weight:700; color:var(--text-primary);">No notifications yet</p>
-                    <p style="margin:0.5rem 0 0; color:var(--text-muted); font-size:0.9rem;">Once there’s activity on your achievements or profile, it will appear here.</p>
+            {{-- Feed --}}
+            @if($updates->isEmpty())
+                <div style="text-align:center; padding:2.5rem 1rem;">
+                    <div style="font-size:2.5rem; margin-bottom:1rem; color:#8b5cf6; opacity:0.6;">🔔</div>
+                    <p style="margin:0; font-size:0.95rem; font-weight:700; color:var(--text-primary);">No recent updates yet</p>
+                    <p style="margin:0.5rem 0 0; color:var(--text-muted); font-size:0.85rem; line-height:1.6;">
+                        Your latest achievement activities will appear here.
+                    </p>
                 </div>
             @else
-                <div style="display:flex; flex-direction:column; gap:0.85rem; margin-bottom:1.25rem;">
-                    @foreach($notifications as $notification)
+                <div style="display:flex; flex-direction:column; gap:0.85rem;">
+                    @foreach($updates as $update)
                         @php
-                            $data = $notification->data;
+                            $data = $update->data;
                             $meta = $statusMap[$data['status'] ?? 'submitted'] ?? $statusMap['submitted'];
                         @endphp
-                        <div style="display:flex; align-items:flex-start; gap:0.85rem; padding:1rem; background:#ffffff; border:1px solid var(--border); border-radius:18px; transition:var(--transition);">
-                            <div style="width:44px; height:44px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:{{ $meta['bg'] }}; color:{{ $meta['color'] }}; flex-shrink:0;">
-                                <i class="bi bi-{{ $meta['icon'] }}" style="font-size:1.1rem;"></i>
+                        <div style="display:flex; align-items:flex-start; gap:0.85rem; padding:1rem; background:#f9fafb; border:1px solid var(--border); border-radius:16px; transition:var(--transition);"
+                             onmouseover="this.style.background='#f3f4f6'; this.style.borderColor='var(--border-light)';"
+                             onmouseout="this.style.background='#f9fafb'; this.style.borderColor='var(--border)';">
+
+                            {{-- Status Icon --}}
+                            <div style="width:42px; height:42px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:{{ $meta['bg'] }}; color:{{ $meta['color'] }}; flex-shrink:0;">
+                                <i class="bi bi-{{ $meta['icon'] }}" style="font-size:1.05rem;"></i>
                             </div>
+
+                            {{-- Content --}}
                             <div style="flex:1; min-width:0;">
                                 <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
-                                    <div style="font-size:0.95rem; font-weight:700; color:var(--text-primary);">{{ $data['title'] ?? 'Activity update' }}</div>
-                                    <span style="font-size:0.72rem; font-weight:700; color:{{ $meta['color'] }}; background:{{ $meta['bg'] }}; padding:0.25rem 0.65rem; border-radius:999px;">{{ $meta['label'] }}</span>
+                                    <div style="font-size:0.875rem; font-weight:700; color:var(--text-primary); line-height:1.3;">
+                                        {{ $data['title'] ?? 'Activity Update' }}
+                                    </div>
+                                    <span style="font-size:0.68rem; font-weight:700; color:{{ $meta['color'] }}; background:{{ $meta['bg'] }}; padding:0.2rem 0.6rem; border-radius:999px; white-space:nowrap;">
+                                        {{ $meta['label'] }}
+                                    </span>
                                 </div>
-                                <p style="margin:0.6rem 0 0; color:var(--text-secondary); font-size:0.86rem; line-height:1.6;">{{ $data['message'] ?? '' }}</p>
+
+                                <p style="margin:0.45rem 0 0; color:var(--text-secondary); font-size:0.82rem; line-height:1.55;">
+                                    {{ $data['message'] ?? '' }}
+                                </p>
+
                                 @if(!empty($data['remarks']))
-                                    <p style="margin:0.65rem 0 0; color:var(--text-secondary); font-size:0.82rem; line-height:1.5;">Faculty remarks: {{ $data['remarks'] }}</p>
+                                    <p style="margin:0.5rem 0 0; color:var(--text-muted); font-size:0.78rem; line-height:1.5; font-style:italic;">
+                                        <i class="bi bi-chat-left-text me-1"></i>{{ $data['remarks'] }}
+                                    </p>
                                 @endif
-                                <div style="margin-top:0.9rem; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; font-size:0.78rem; color:var(--text-muted);">
-                                    <span>{{ $notification->created_at->diffForHumans() }}</span>
+
+                                <div style="margin-top:0.65rem; display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; font-size:0.75rem; color:var(--text-muted);">
+                                    <i class="bi bi-clock" style="font-size:0.72rem;"></i>
+                                    <span>{{ $update->created_at->diffForHumans() }}</span>
                                     @if(!empty($data['achievement_title']))
-                                        <span>&bull; {{ $data['achievement_title'] }}</span>
+                                        <span style="color:var(--border-light);">·</span>
+                                        <span style="max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="{{ $data['achievement_title'] }}">
+                                            {{ $data['achievement_title'] }}
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -224,36 +216,6 @@
                     @endforeach
                 </div>
             @endif
-
-            <div style="border-top:1px solid var(--border); padding-top:1rem;">
-                <h3 style="font-size:0.95rem; margin:0 0 1rem; color:var(--text-primary);">Recent Activity</h3>
-                <div style="display:flex; flex-direction:column; gap:0.85rem;">
-                    @forelse($activities as $activity)
-                        @php
-                            $data = $activity->data;
-                            $meta = $statusMap[$data['status'] ?? 'submitted'] ?? $statusMap['submitted'];
-                        @endphp
-                        <div style="display:flex; align-items:flex-start; gap:0.85rem;">
-                            <div style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:{{ $meta['bg'] }}; color:{{ $meta['color'] }}; flex-shrink:0;">
-                                <i class="bi bi-{{ $meta['icon'] }}" style="font-size:1rem;"></i>
-                            </div>
-                            <div style="flex:1; min-width:0;">
-                                <div style="font-size:0.9rem; font-weight:700; color:var(--text-primary);">{{ $data['title'] ?? 'Activity update' }}</div>
-                                <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap; margin-top:0.35rem; color:var(--text-secondary); font-size:0.82rem;">
-                                    <span>{{ \Illuminate\Support\Str::limit($data['message'] ?? '', 68) }}</span>
-                                    <span>{{ $activity->created_at->diffForHumans() }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div style="text-align:center; padding:1.5rem 1rem; color:var(--text-secondary);">
-                            <div style="font-size:1.6rem; margin-bottom:0.75rem; color:#8b5cf6;">📌</div>
-                            <p style="margin:0; font-size:0.95rem; font-weight:700; color:var(--text-primary);">No recent activity available.</p>
-                            <p style="margin:0.5rem 0 0; color:var(--text-muted); font-size:0.88rem;">Your latest achievement events will appear here once you start submitting work.</p>
-                        </div>
-                    @endforelse
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -57,7 +57,7 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     
     // Achievements
-    Route::resource('achievements', AchievementController::class);
+    Route::resource('achievements', AchievementController::class)->except(['show']);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
