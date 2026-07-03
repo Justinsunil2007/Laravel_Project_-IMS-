@@ -174,7 +174,7 @@
                     'pending'  => ['label' => 'Under Review', 'color' => '#d97706', 'bg' => 'rgba(217,119,6,0.12)', 'icon' => 'hourglass-split'],
                     'rejected' => ['label' => 'Rejected', 'color' => '#dc2626', 'bg' => 'rgba(220,38,38,0.12)', 'icon' => 'x-circle-fill'],
                     'submitted'=> ['label' => 'Submitted', 'color' => '#2563eb', 'bg' => 'rgba(37,99,235,0.12)', 'icon' => 'arrow-up-circle-fill'],
-                    'updated'  => ['label' => 'Updated', 'color' => '#7c3aed', 'bg' => 'rgba(124,58,237,0.12)', 'icon' => 'pencil-square'},
+                    'updated'  => ['label' => 'Updated', 'color' => '#7c3aed', 'bg' => 'rgba(124,58,237,0.12)', 'icon' => 'pencil-square'],
                     'profile'  => ['label' => 'Profile', 'color' => '#8b5cf6', 'bg' => 'rgba(139,92,246,0.12)', 'icon' => 'person-fill'],
                     'deleted'  => ['label' => 'Deleted', 'color' => '#ef4444', 'bg' => 'rgba(239,68,68,0.12)', 'icon' => 'trash-fill'],
                 ];

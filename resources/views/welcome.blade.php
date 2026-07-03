@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -162,7 +162,7 @@
             font-size: 1rem;
         }
 
-        .portal-card a {
+        .portal-card .portal-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -177,12 +177,12 @@
             box-shadow: 0 14px 25px rgba(79, 70, 229, 0.18);
         }
 
-        .portal-card a:hover {
+        .portal-card:hover .portal-btn {
             transform: translateY(-1px);
             background: #4338ca;
         }
 
-        .portal-card a:focus-visible {
+        .portal-card:focus-visible .portal-btn {
             outline: 3px solid rgba(79, 70, 229, 0.24);
             outline-offset: 4px;
         }
@@ -233,7 +233,7 @@
                         <h2>Student Portal</h2>
                         <p>Access your student dashboard to submit and track achievements.</p>
                     </div>
-                    <div>Enter Student Portal</div>
+                    <div class="portal-btn">Enter Student Portal</div>
                 </a>
 
                 <a href="/faculty/login" class="portal-card">
@@ -242,7 +242,7 @@
                         <h2>Faculty Portal</h2>
                         <p>Review, verify, and manage student achievements.</p>
                     </div>
-                    <div>Enter Faculty Portal</div>
+                    <div class="portal-btn">Enter Faculty Portal</div>
                 </a>
             </div>
         </div>
