@@ -1,0 +1,80 @@
+# =============================================================================
+# site.conf.template — Laravel virtual-host template
+# =============================================================================
+# The ${PORT} variable is substituted at container startup by start.sh using
+# the `envsubst` tool so that Railway's dynamic PORT is honoured.
+# The rendered output is written to /etc/nginx/conf.d/default.conf.
+
+server {
+    listen ${PORT};
+    listen [::]:${PORT};
+
+    server_name _;
+
+    root /var/www/html/public;
+    index index.php index.html;
+
+    # -------------------------------------------------------------------------
+    # Charset
+    # -------------------------------------------------------------------------
+    charset utf-8;
+
+    # -------------------------------------------------------------------------
+    # Laravel routing: try files, fall back to index.php
+    # -------------------------------------------------------------------------
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # -------------------------------------------------------------------------
+    # PHP-FPM upstream (php8.4-fpm default socket)
+    # -------------------------------------------------------------------------
+    location ~ \.php$ {
+        fastcgi_pass            127.0.0.1:9000;
+        fastcgi_index           index.php;
+        fastcgi_buffers         16 16k;
+        fastcgi_buffer_size     32k;
+        fastcgi_read_timeout    300;
+
+        include                 fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT   $realpath_root;
+
+        # Pass Railway / proxy headers to PHP
+        fastcgi_param HTTP_X_FORWARDED_FOR  $http_x_forwarded_for;
+        fastcgi_param HTTP_X_FORWARDED_PROTO $http_x_forwarded_proto;
+    }
+
+    # -------------------------------------------------------------------------
+    # Static assets — Vite build output (long cache, immutable)
+    # -------------------------------------------------------------------------
+    location /build/ {
+        expires     1y;
+        add_header  Cache-Control "public, immutable";
+        try_files   $uri =404;
+    }
+
+    # -------------------------------------------------------------------------
+    # Static asset caching (images, fonts, css, js outside /build)
+    # -------------------------------------------------------------------------
+    location ~* \.(jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot|css|js)$ {
+        expires    30d;
+        add_header Cache-Control "public";
+        try_files  $uri =404;
+    }
+
+    # -------------------------------------------------------------------------
+    # Deny direct access to sensitive files
+    # -------------------------------------------------------------------------
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    # -------------------------------------------------------------------------
+    # Error pages
+    # -------------------------------------------------------------------------
+    error_page 404 /index.php;
+}

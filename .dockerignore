@@ -1,0 +1,55 @@
+# =============================================================================
+# .dockerignore — Keep the Docker build context lean and secure
+# =============================================================================
+
+# Git history (not needed in image; saves significant transfer time)
+.git
+.gitattributes
+.gitignore
+
+# Environment files — NEVER bake secrets into the image
+.env
+.env.*
+!.env.example
+
+# Editor / IDE configs
+.vscode
+.idea
+.nova
+.zed
+.cursor
+.codex
+.editorconfig
+
+# Node build toolchain (rebuilt in the Node stage)
+node_modules
+
+# Composer vendor (rebuilt in the Composer stage)
+vendor
+
+# Compiled frontend assets (built in the Node stage, copied via COPY --from)
+public/build
+public/hot
+
+# Laravel log files
+storage/logs/*.log
+storage/pail
+
+# Test artifacts
+.phpunit.result.cache
+.phpunit.cache
+
+# PHPUnit config (not needed at runtime)
+phpunit.xml
+
+# Documentation
+README.md
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Docker files themselves (avoid recursive context)
+Dockerfile
+.dockerignore
+docker/
