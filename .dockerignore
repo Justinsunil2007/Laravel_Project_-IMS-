@@ -50,6 +50,6 @@ README.md
 Thumbs.db
 
 # Docker files themselves (avoid recursive context)
-Dockerfile
+
 .dockerignore
-docker/
+
